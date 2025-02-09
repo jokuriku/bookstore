@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit</title>
+  </head>
+  <body>
+    <h1>Edit</h1>
+
+    <form action="#" th:action="@{/savebook}" th:object="${book}" method="post">
+      <input type="hidden" th:field="*{id}" class="form-control" />
+      <div>
+        <label>Author <input type="text" th:field="${book.author}" /></label>
+      </div>
+      <div>
+        <label>Title <input type="text" th:field="${book.title}" /></label>
+      </div>
+      <div>
+        <label
+          >Year <input type="text" th:field="${book.publicationYear}"
+        /></label>
+      </div>
+      <div>
+        <label>ISBN <input type="text" th:field="${book.isbn}" /></label>
+      </div>
+      <div>
+        <label>Price <input type="text" th:field="${book.price}" /></label>
+      </div>
+      <div>
+        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
+      </div>
+    </form>
+  </body>
+</html>
