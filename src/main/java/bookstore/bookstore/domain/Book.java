@@ -34,6 +34,10 @@ public class Book {
         this.title = title;
     }
 
+    public void setId(Long id) {
+		this.id = id;
+	}
+
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -53,6 +57,10 @@ public class Book {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public Long getId() {
+		return id;
+	}
 
     public String getAuthor() {
         return author;
