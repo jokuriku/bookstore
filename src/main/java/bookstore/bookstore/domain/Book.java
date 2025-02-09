@@ -25,7 +25,7 @@ public class Book {
         this.title = "";
     }
 
-    public Book(String author, String isbn, double price, int publicationYear, String title) {
+    public Book(String author, String title, int publicationYear, String isbn, double price) {
         super();
         this.author = author;
         this.isbn = isbn;
@@ -72,5 +72,11 @@ public class Book {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public String toString() {
+        return "Book [id=" + id + ", author=" + author + ", title=" + title + ", year=" + publicationYear + ", isbn="
+                + isbn + ", price=" + price + "]";
     }
 }
