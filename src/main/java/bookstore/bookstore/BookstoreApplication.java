@@ -37,6 +37,11 @@ public class BookstoreApplication {
 				log.info(book.toString());
 			}
 
+			log.info("fetch all categories");
+			for (Category cat : catRepo.findAll()) {
+				log.info(cat.toString());
+			}
+
 		};
 	}
 
