@@ -27,6 +27,18 @@
         <label>Price <input type="text" th:field="${book.price}" /></label>
       </div>
       <div>
+        <label
+          >Category
+          <select th:field="*{category}" class="form-control">
+            <option
+              th:each="category: ${categories}"
+              th:value="${category.categoryId}"
+              th:text="${category.name}"
+            ></option>
+          </select>
+        </label>
+      </div>
+      <div>
         <input type="submit" value="Submit" />
         <input type="reset" value="Reset" />
       </div>

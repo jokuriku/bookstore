@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import bookstore.bookstore.domain.Book;
 import bookstore.bookstore.domain.BookRepository;
+import bookstore.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping({ "/index" })
     public String getIndex() {
@@ -33,6 +37,7 @@ public class BookController {
     @GetMapping("/addbook")
     public String getNewBookForm(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";
     }
 
