@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import bookstore.bookstore.domain.Book;
 import bookstore.bookstore.domain.BookRepository;
+import bookstore.bookstore.domain.Category;
+import bookstore.bookstore.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -21,15 +23,17 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner studentDemo(BookRepository repository) {
+	public CommandLineRunner bookstore(BookRepository bookRepo, CategoryRepository catRepo) {
 		return (args) -> {
-			log.info("save a couple of students");
-			repository.save(new Book("Ursula K. Le Guin", "The Compass Rose", 1982, "", 0.0));
-			repository.save(new Book("Eeva Turunen", "Sivistynyt ja miellyttävä ihminen", 2022, "", 0.0));
-			repository.save(new Book("Monika Fagerholm", "Amerikkalainen tyttö", 2004, "", 0.0));
+			bookRepo.save(new Book("Ursula K. Le Guin", "The Compass Rose", 1982, "", 0.0));
+			bookRepo.save(new Book("Eeva Turunen", "Sivistynyt ja miellyttävä ihminen", 2022, "", 0.0));
+			bookRepo.save(new Book("Monika Fagerholm", "Amerikkalainen tyttö", 2004, "", 0.0));
+			catRepo.save(new Category("scifi"));
+			catRepo.save(new Category("comic"));
+			catRepo.save(new Category("horror"));
 
 			log.info("fetch all books");
-			for (Book book : repository.findAll()) {
+			for (Book book : bookRepo.findAll()) {
 				log.info(book.toString());
 			}
 

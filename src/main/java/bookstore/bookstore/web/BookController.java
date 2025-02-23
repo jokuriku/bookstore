@@ -30,7 +30,6 @@ public class BookController {
         return "booklist";
     }
 
-    // tyhjän autolomakkeen muodostaminen
     @GetMapping("/addbook")
     public String getNewBookForm(Model model) {
         model.addAttribute("book", new Book());
