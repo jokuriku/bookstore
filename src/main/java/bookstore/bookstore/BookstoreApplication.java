@@ -25,12 +25,13 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner bookstore(BookRepository bookRepo, CategoryRepository catRepo) {
 		return (args) -> {
-			bookRepo.save(new Book("Ursula K. Le Guin", "The Compass Rose", 1982, "", 0.0));
-			bookRepo.save(new Book("Eeva Turunen", "Sivistynyt ja miellyttävä ihminen", 2022, "", 0.0));
-			bookRepo.save(new Book("Monika Fagerholm", "Amerikkalainen tyttö", 2004, "", 0.0));
-			catRepo.save(new Category("scifi"));
-			catRepo.save(new Category("comic"));
-			catRepo.save(new Category("horror"));
+			Category scifi = new Category("scifi");
+			Category novel = new Category("novel");
+			catRepo.save(scifi);
+			catRepo.save(novel);
+			bookRepo.save(new Book("Ursula K. Le Guin", "The Compass Rose", 1982, "", 0.0, scifi));
+			bookRepo.save(new Book("Eeva Turunen", "Sivistynyt ja miellyttävä ihminen", 2022, "", 0.0, novel));
+			bookRepo.save(new Book("Monika Fagerholm", "Amerikkalainen tyttö", 2004, "", 0.0, novel));
 
 			log.info("fetch all books");
 			for (Book book : bookRepo.findAll()) {
