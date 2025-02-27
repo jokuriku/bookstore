@@ -27,8 +27,10 @@ public class BookstoreApplication {
 		return (args) -> {
 			Category scifi = new Category("scifi");
 			Category novel = new Category("novel");
+			Category horror = new Category("horror");
 			catRepo.save(scifi);
 			catRepo.save(novel);
+			catRepo.save(horror);
 			bookRepo.save(new Book("Ursula K. Le Guin", "The Compass Rose", 1982, "", 0.0, scifi));
 			bookRepo.save(new Book("Eeva Turunen", "Sivistynyt ja miellyttävä ihminen", 2022, "", 0.0, novel));
 			bookRepo.save(new Book("Monika Fagerholm", "Amerikkalainen tyttö", 2004, "", 0.0, novel));

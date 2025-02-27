@@ -1,5 +1,7 @@
 package bookstore.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Book {
     private String title;
 
     @ManyToOne
+    @JsonIgnoreProperties("books")
     @JoinColumn(name = "categoryId")
     private Category category;
 
@@ -42,8 +45,8 @@ public class Book {
     }
 
     public void setId(Long id) {
-		this.id = id;
-	}
+        this.id = id;
+    }
 
     public void setAuthor(String author) {
         this.author = author;
@@ -66,8 +69,8 @@ public class Book {
     }
 
     public Long getId() {
-		return id;
-	}
+        return id;
+    }
 
     public String getAuthor() {
         return author;
@@ -90,20 +93,22 @@ public class Book {
     }
 
     public Category getCategory() {
-		return category;
-	}
+        return category;
+    }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     @Override
     public String toString() {
         if (this.category != null)
-            return "Book [id=" + id + ", author=" + author + ", title=" + title + ", year=" + publicationYear + ", isbn="
-            + isbn + ", price=" + price + ", category=" + category + "]";
+            return "Book [id=" + id + ", author=" + author + ", title=" + title + ", year=" + publicationYear
+                    + ", isbn="
+                    + isbn + ", price=" + price + ", category=" + category + "]";
         else
-        return "Book [id=" + id + ", author=" + author + ", title=" + title + ", year=" + publicationYear + ", isbn="
-                + isbn + ", price=" + price + "]";
+            return "Book [id=" + id + ", author=" + author + ", title=" + title + ", year=" + publicationYear
+                    + ", isbn="
+                    + isbn + ", price=" + price + "]";
     }
 }
