@@ -1,39 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+  lang="en"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booklist</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Books</h1>
 
-    <table>
-		<tr>
-			<th>Id</th>
-			<th>Author</th>
-			<th>Title</th>
-            <th>Year</th>
-            <th>ISBN</th>
-            <th>Price</th>
-            <th>Category</th>
-		</tr>
+    <div>Logged in as <span sec:authentication="name"></span></div>
 
-		<tr th:each="book : ${books}">
-			<td th:text="${book.id}">id</td>
-			<td th:text="${book.author}">author</td>
-            <td th:text="${book.title}">title</td>
-			<td th:text="${book.publicationYear}">year</td>
-            <td th:text="${book.isbn}">ISBN</td>
-            <td th:text="${book.price}">price</td>
-            <td th:text="${book.category} ? ${book.category.name} : ' '">category</td>
-            <td><a th:href="@{/editbook/{id}(id=${book.id})}">edit</a></td>
-            <td><a th:href="@{/deletebook/{id}(id=${book.id})}">delete</a></td>
-		</tr>
-	</table>
+    <div>
+      <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" />
+      </form>
+    </div>
+
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>ISBN</th>
+        <th>Price</th>
+        <th>Category</th>
+      </tr>
+
+      <tr th:each="book : ${books}">
+        <td th:text="${book.id}">id</td>
+        <td th:text="${book.author}">author</td>
+        <td th:text="${book.title}">title</td>
+        <td th:text="${book.publicationYear}">year</td>
+        <td th:text="${book.isbn}">ISBN</td>
+        <td th:text="${book.price}">price</td>
+        <td th:text="${book.category} ? ${book.category.name} : ' '">
+          category
+        </td>
+        <td><a th:href="@{/editbook/{id}(id=${book.id})}">edit</a></td>
+        <td sec:authorize="hasRole('ADMIN')">
+          <a th:href="@{/deletebook/{id}(id=${book.id})}">delete</a>
+        </td>
+      </tr>
+    </table>
 
     <p>
-        <a href="/addbook">Add book</a>
+      <a href="/addbook">Add book</a>
     </p>
-</body>
+  </body>
 </html>
